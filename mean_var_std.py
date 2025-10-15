@@ -16,8 +16,9 @@ def mean_calc(list):
     #return nums.mean(axis=0).tolist() 
     mean_matrix = calculate(list)
     mean_dict = {
-        "Mean": [
-            mean_matrix.mean(axis=0).tolist(), mean_matrix.mean(axis=1).tolist(), float(mean_matrix.mean())
+        "mean": [
+            mean_matrix.mean(axis=0).tolist(), mean_matrix.mean(axis=1).tolist(), float(mean_matrix.mean()),
+            
         ]
     }
     return mean_dict
@@ -27,8 +28,8 @@ def mean_calc(list):
 def var_calc(list):
     var_matrix = calculate(list)
     var_dict = {
-        "Variance": [
-            var_matrix.var(axis=0).tolist()
+        "variance": [
+            var_matrix.var(axis=0).tolist(), var_matrix.var(axis=1).tolist(), float(var_matrix.var())
         ]
     }
     return var_dict
@@ -38,8 +39,8 @@ def var_calc(list):
 def std_calc(list):
     std_matrix = calculate(list)
     std_dict = {
-        "Standard Deviation": [
-            std_matrix.std(axis=0).tolist()
+        "standard deviation": [
+            std_matrix.std(axis=0).tolist(), std_matrix.std(axis=1).tolist(), float(std_matrix.std())
         ]
     }
     return std_dict
@@ -48,8 +49,8 @@ def std_calc(list):
 def min_calc(list):
     min_matrix = calculate(list)
     min_dict = {
-        "Min": [
-            min_matrix.min(axis=0).tolist()
+        "min": [
+            min_matrix.min(axis=0).tolist(), min_matrix.min(axis=1).tolist(), float(min_matrix.min())
         ]
     }
     return min_dict
@@ -57,8 +58,8 @@ def min_calc(list):
 def max_calc(list):
     max_matrix = calculate(list)
     max_dict = {
-        "Max": [
-            max_matrix.max(axis=0).tolist()
+        "max": [
+            max_matrix.max(axis=0).tolist(), max_matrix.max(axis=1).tolist(), float(max_matrix.max())
         ]
     }
     return max_dict
@@ -67,13 +68,23 @@ def sum_calc(list):
     sum_matrix = calculate(list)
     sum_dict = {
         "sum": [
-            sum_matrix.sum(axis=0).tolist()
+            sum_matrix.sum(axis=0).tolist(), sum_matrix.sum(axis=1).tolist(), float(sum_matrix.sum())
         ]
     }
     return sum_dict
     
+def all_calc(data):
+    return {
+        'mean': mean_calc(data)['mean'],
+        'variance': var_calc(data)['variance'],
+        'standard deviation': std_calc(data)['standard deviation'],
+        'max': max_calc(data)['max'],
+        'min': min_calc(data)['min'],
+        'sum': sum_calc(data)['sum']
+    }
+
     
-result = sum_calc(data)
+result = all_calc(data)
 print(result)
 '''
 The function should convert the list into a 3 x 3 Numpy array, and then return a dictionary containing the mean, variance, standard deviation, max, min, and sum along both axes and for the flattened matrix.
